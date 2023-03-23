@@ -16,6 +16,7 @@
     "@svgr/webpack": "^6.5.1",
     "broadcast-channel": "^4.20.2",
     "buffer": "^6.0.3",
+    "cross-env": "^7.0.3",
     "csv": "^6.2.8",
     "expiry-set": "^1.0.0",
     "idb-keyval": "^6.2.0",
@@ -50,7 +51,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false craco build",
+    "build": "cross-env NODE_ENV=production REACT_APP_AUTH_PROVIDER=local GENERATE_SOURCEMAP=false && craco build",
+    "build:dev": "cross-env NODE_ENV=development REACT_APP_AUTH_PROVIDER=local GENERATE_SOURCEMAP=true && craco build",
     "test": "craco test",
     "eject": "craco eject",
     "extract": "formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file public/lang/en-us.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'"

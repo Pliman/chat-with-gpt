@@ -16,11 +16,12 @@ module.exports = {
           removeDefaultMessage: false,
           idInterpolationPattern: '[sha512:contenthash:base64:6]',
           ast: true
-        }
+        } 
       ]
     ]
   },
   webpack: {
+    mode: process.env.NODE_ENV === "development" ? "development" : "production",
     configure: {
       resolve: {
         fallback: {

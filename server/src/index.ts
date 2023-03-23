@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 require('dotenv').config()
 
 import express from 'express';
@@ -90,12 +91,12 @@ export default class ChatServer {
             this.app.post('/chatapi/completion/streaming', (req, res) => new StreamingCompletionRequestHandler(this, req, res));
         }
 
-        if (fs.existsSync('public')) {
-            this.app.use(express.static('public'));
+        if (fs.existsSync('build')) {
+            this.app.use(express.static('build'));
 
             // serve index.html for all other routes
             this.app.get('*', (req, res) => {
-                res.sendFile('public/index.html', { root: path.resolve(__dirname, '..') });
+                res.sendFile('build/index.html', { root: path.resolve(__dirname, '..') });
             });
         }
 
